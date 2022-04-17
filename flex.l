@@ -18,26 +18,26 @@ extern "C" int yywrap() { }
 [Integer.MIN_VALUE-Integer.MAX_VALUE] {printf("VALID")}
 
 [ \t\n]                 ;
-[a-zA-Z_][a-zA-Z0-9_]*  SAVE_TOKEN; return TIDENTIFIER;
-[0-9]+.[0-9]*           SAVE_TOKEN; return TDOUBLE;
-[0-9]+                  SAVE_TOKEN; return TINTEGER;
-"="                     return TOKEN(TEQUAL);
-"=="                    return TOKEN(TCEQ);
-"!="                    return TOKEN(TCNE);
-"<"                     return TOKEN(TCLT);
-"<="                    return TOKEN(TCLE);
-">"                     return TOKEN(TCGT);
-">="                    return TOKEN(TCGE);
-"("                     return TOKEN(TLPAREN);
-")"                     return TOKEN(TRPAREN);
-"{"                     return TOKEN(TLBRACE);
-"}"                     return TOKEN(TRBRACE);
-"."                     return TOKEN(TDOT);
-","                     return TOKEN(TCOMMA);
-"+"                     return TOKEN(TPLUS);
-"-"                     return TOKEN(TMINUS);
-"*"                     return TOKEN(TMUL);
-"/"                     return TOKEN(TDIV);
+[a-zA-Z_][a-zA-Z0-9_]*  printf("valid!n");SAVE_TOKEN; return TIDENTIFIER;
+[0-9]+.[0-9]*           printf("valid!n");SAVE_TOKEN; return TDOUBLE;
+[0-9]+                  printf("valid!n");SAVE_TOKEN; return TINTEGER;
+"="                     printf("valid!n");return TOKEN(TEQUAL);
+"=="                    printf("valid!n");return TOKEN(TCEQ);
+"!="                    printf("valid!n");return TOKEN(TCNE);
+"<"                     printf("valid!n");return TOKEN(TCLT);
+"<="                    printf("valid!n");return TOKEN(TCLE);
+">"                     printf("valid!n");return TOKEN(TCGT);
+">="                    printf("valid!n");return TOKEN(TCGE);
+"("                     printf("valid!n");return TOKEN(TLPAREN);
+")"                     printf("valid!n");return TOKEN(TRPAREN);
+"{"                     printf("valid!n");return TOKEN(TLBRACE);
+"}"                     printf("valid!n");return TOKEN(TRBRACE);
+"."                     printf("valid!n");return TOKEN(TDOT);
+","                     printf("valid!n");return TOKEN(TCOMMA);
+"+"                     printf("valid!n");return TOKEN(TPLUS);
+"-"                     printf("valid!n");return TOKEN(TMINUS);
+"*"                     printf("valid!n");return TOKEN(TMUL);
+"/"                     printf("valid!n");return TOKEN(TDIV);
 .                       printf("Unknown token!n"); yyterminate();
 
 
