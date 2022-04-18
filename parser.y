@@ -28,6 +28,8 @@
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <token> TPLUS TMINUS TMUL TDIV
+%token <token> BOOL STRING VOID STRCT FOR TIF THEN ELSE PRINT RTRN TTRUE TFALSE 
+
 
 /* Define the type of node our nonterminal symbols represent.
    The types refer to the %union declaration above. Ex: when
@@ -92,6 +94,8 @@ expr : ident TEQUAL expr { $$ = new NAssignment(*$<ident>1, *$3); }
      | expr comparison expr { $$ = new NBinaryOperator(*$1, $2, *$3); }
      | TLPAREN expr TRPAREN { $$ = $2; }
      ;
+
+//if_expr: ident TIF expr {$$ = new NAssignment(*$<ident>1, *$3}
     
 call_args : /*blank*/  { $$ = new ExpressionList(); }
           | expr { $$ = new ExpressionList(); $$->push_back($1); }
@@ -101,5 +105,16 @@ call_args : /*blank*/  { $$ = new ExpressionList(); }
 comparison : TCEQ | TCNE | TCLT | TCLE | TCGT | TCGE 
            | TPLUS | TMINUS | TMUL | TDIV
            ;
+
+assign_rules:  $1 TEQUAL VOID SEMICOLON | $2 TEQUAL expr SEMICOLON ; 
+
+if_rule: if_rule if_rules | ;
+if_rules: IF TLPAREN boolean_rules TRPAREN THEN TLBRACE stmts TRBRACE else_rules;
+else_rules: ELSE TLBRACE stmts TRBRACE | ; 
+for_loop_rules: FOR TLPAREN assign_rules cond_rules SEMICOLON cond_rules TRPAREN TLBRACE stmts RBRTRBRACEACE;
+boolean_rules : cond_rules | $$ | TTRU | TFALSE ;
+
+cond_rules:
+	expr TEQUAL expr | expr comparison expr
 
 %%
